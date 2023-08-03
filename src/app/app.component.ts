@@ -10,13 +10,14 @@ export class AppComponent {
   constructor(private http: HttpClient) { }
   title = 'Weather-App';
   inputValue: string = '';
+  weatherData: any = {}; // Змінна для збереження даних про погоду
 
-  getWeatherData(city: string) { // Виправлена функція getWeatherData
+  getWeatherData(city: string) {
     const apiUrl = 'https://weatherapi-com.p.rapidapi.com/current.json';
     const apiKey = 'ef2ea62c39mshb72c564fe184808p124d39jsn2dfb017c17e5';
 
     const options = {
-      params: { q: city }, // Використовуємо передане значення міста
+      params: { q: city },
       headers: {
         'X-RapidAPI-Key': apiKey,
         'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
@@ -25,7 +26,8 @@ export class AppComponent {
 
     this.http.get(apiUrl, options)
       .subscribe(
-        (response) => {
+        (response: any) => {
+          this.weatherData = response; // Зберігаємо дані про погоду у змінній weatherData
           console.log(response);
         },
         (error) => {

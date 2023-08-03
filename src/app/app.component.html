@@ -1,3 +1,13 @@
 <main>
-    <app-input (cityChanged)="getWeatherData($event)"></app-input>
+    <div>
+        <app-input (cityChanged)="getWeatherData($event)"></app-input>
+    </div>
+
+    <div class="output" *ngIf="weatherData?.location">
+        <h2>Weather in {{ weatherData.location.name }}, {{ weatherData.location.country }}</h2>
+        <p>Temperature: {{ weatherData.current.temp_c }}°C</p>
+        <p>Condition: {{ weatherData.current.condition.text }}</p>
+        <p>Wind: {{ weatherData.current.wind_kph }} kph, {{ weatherData.current.wind_dir }}</p>
+        <p>Humidity: {{ weatherData.current.humidity }}%</p>
+    </div>
 </main>

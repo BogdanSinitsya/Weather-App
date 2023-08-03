@@ -4,3 +4,7 @@ main {
     align-items: center;
     justify-content: center;
 }
+
+.output {
+    margin-left: 100px;
+}
